@@ -1,0 +1,5 @@
+C:\Users\_YBY\RiderProjects\ConsoleApp1\pub\ConsoleApp1.exe
+C:\Users\_YBY\RiderProjects\ConsoleApp1\pub\ConsoleApp1.dll
+C:\Users\_YBY\RiderProjects\ConsoleApp1\pub\ConsoleApp1.deps.json
+C:\Users\_YBY\RiderProjects\ConsoleApp1\pub\ConsoleApp1.runtimeconfig.json
+C:\Users\_YBY\RiderProjects\ConsoleApp1\pub\ConsoleApp1.pdb
