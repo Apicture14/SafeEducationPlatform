@@ -2,24 +2,25 @@
 using HtmlAgilityPack;
 using System.Text;
 using System.Text.Json;
-using ConsoleApp1;
+using Utils;
 
 string specialId = "";
 
-Utils u = new Utils();
+WebUtils u = new WebUtils();
 u.Init();
-CookieContainer cookie = u.login("yinboge","11223344qQ");
+u.cc = u.login("yinboge","11223344qQ");
 
-specialId =  u.GetSpecialId(u.DisplayWorklist(u.FormatResp(cookie)),cookie);
+specialId =  u.GetSpecialId(u.DisplayWorklist(u.FormatResp(u.cc)),u.cc);
 
-Console.WriteLine(specialId);
+Console.WriteLine("X:"+specialId);
 
-u.sign_req.CookieContainer = cookie;
+u.sign_req.CookieContainer = u.cc;
 u.sign_req.ContentType = "application/json; charset=utf-8";
 u.sign_req.UserAgent = u.UserAgent;
 u.sign_req.Method = "POST";
 
 Stream s = u.sign_req.GetRequestStream();
-s.Write(Utils.ToBytes($"\"specialId\":{specialId},\"step\":1"));
+s.Write(WebUtils.ToBytes($"\"specialId\":{specialId},\"step\":1"));
 HttpWebResponse sresp = (HttpWebResponse)u.sign_req.GetResponse();
-Console.WriteLine(Utils.GetData(sresp));
+Console.WriteLine(WebUtils.GetData(sresp));
+
