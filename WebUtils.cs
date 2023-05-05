@@ -55,7 +55,10 @@ public class WebUtils
         StringBuilder sb = new StringBuilder();
         s.Write(Encoding.UTF8.GetBytes(inf));
         HttpWebResponse resp = (HttpWebResponse)req_log.GetResponse();
-        if (JsonSerializer.Deserialize<Dictionary<string,dynamic>>(new StreamReader(resp.GetResponseStream()).ReadToEnd())["data"]==null){throw new Exception("Wrong Infos");}
+        JsonSerializer.Deserialize<Dictionary<string,dynamic>>(new StreamReader(resp.GetResponseStream()).ReadToEnd());
+        if (JsonSerializer.Deserialize<Dictionary<string,dynamic>>(new StreamReader(resp.GetResponseStream()).ReadToEnd())["data"]==null){
+            throw new Exception("Wrong Infos");}
+        Console.WriteLine();
         // Console.WriteLine("*---"+resp);
         return req_log.CookieContainer;
     }
@@ -84,7 +87,7 @@ public class WebUtils
         return (worklist[int.Parse(Console.ReadLine())]["url"].GetString().Replace("index","jiating"));
     }
 
-    public string GetSpecialId(string WorkUrl,CookieContainer cookie){
+    public string GetSpecialId(string WorkUrl){
         string idUrl = WorkUrl.Split("?")[0].Replace("jiating","message");
         //Console.WriteLine(idUrl);
         HttpWebRequest req = (HttpWebRequest) HttpWebRequest.Create(idUrl);
